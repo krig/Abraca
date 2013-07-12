@@ -67,7 +67,7 @@ public class Abraca.Application : Gtk.Application {
 
 			var about = builder.get_object("abraca_about") as Gtk.AboutDialog;
 
-			about.set_logo(new Gdk.Pixbuf.from_resource("/org/xmms2/Abraca/abraca-192.png"));
+			about.set_logo(new Gdk.Pixbuf.from_resource("/org/xmms2/Abraca/abraca-512.png"));
 			about.version = Build.Config.VERSION;
 
 			about.transient_for = window;

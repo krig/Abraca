@@ -1,6 +1,8 @@
 public class Abraca.PlaylistWidget : Gtk.ScrolledWindow {
 	public PlaylistWidget (Client client, Config config, Medialib medialib, Searchable search)
 	{
+		double_buffered = false;
+
 		hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 		vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 

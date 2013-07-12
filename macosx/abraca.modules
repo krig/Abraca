@@ -1,6 +1,7 @@
 <moduleset>
 
   <repository href="git://git.gnome.org/" name="git.gnome.org" type="git" />
+  <repository href="git://people.freedesktop.org/~ickle" name="cairo-git" type="git" />
   <repository href="git://git.xmms2.org/" name="git.xmms2.org" type="git" />
   <repository href="http://cairographics.org/releases/" name="cairographics.org" type="tarball" />
   <repository default="yes" href="http://ftp.gnome.org/pub/GNOME/sources/" name="ftp.gnome.org" type="tarball" />
@@ -32,7 +33,7 @@
   </autotools>
 
   <autotools autogenargs="--with-included-loaders=png,gif,jpeg --without-libtiff" id="gdk-pixbuf">
-    <branch hash="sha256:ae9a4506f6793475814990c42ec7174f86dcdb8d02ce1b57207849bd084c5bb9" module="gdk-pixbuf/2.29/gdk-pixbuf-2.29.0.tar.xz" version="2.29.0" />
+    <branch hash="sha256:f5e173bf9fe48440f45a77b0bb5ae30b44f4af0da3cd128cd1489b0f3072808d" module="gdk-pixbuf/2.29/gdk-pixbuf-2.29.2.tar.xz" version="2.29.2" />
     <dependencies>
       <dep package="glib" />
       <dep package="libpng" />
@@ -41,16 +42,23 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gtk-doc">
+    <branch hash="sha256:27df247fa828433a9390368e2088cc22f954f2ce1f255ddbd12ab6e027b12e68" module="gtk-doc/1.19/gtk-doc-1.19.tar.xz" version="1.19" />
+    <dependencies>
+      <dep package="glib" />
+    </dependencies>
+  </autotools>
+
   <autotools id="atk">
-    <branch hash="sha256:49fbc4cf9055f6d83e5d67c6c09cee92a62549d52d8fd5cc05a78e214b70cf1b" module="atk/2.9/atk-2.9.2.tar.xz" version="2.9.2" />
+    <branch hash="sha256:5fdb79c729cfad45042c3e0f55d01f57fdde3b8379b6cb5bbeb8b37478d4456d" module="atk/2.9/atk-2.9.3.tar.xz" version="2.9.3" />
     <dependencies>
       <dep package="glib" />
       <dep package="gobject-introspection" />
     </dependencies>
   </autotools>
 
- <autotools autogen-sh="configure" autogenargs="--enable-quartz-backend --enable-quartz-relocation --disable-glibtest --disable-cups --disable-papi --enable-packagekit=no --enable-colord=no" id="gtk+-3.0">
-    <branch hash="sha256:f12ae787c76bd44fff15e4ee05093895a951c96191fc92ad9f3f592639ed55e9" module="gtk+/3.9/gtk+-3.9.2.tar.xz" version="3.9.2" />
+  <autotools autogenargs="--enable-quartz-backend --enable-quartz-relocation --disable-glibtest --disable-cups --disable-papi --enable-packagekit=no --enable-colord=no" id="gtk+-3.0">
+    <branch repo="git.gnome.org" module="gtk+" revision="master" />
     <dependencies>
       <dep package="glib" />
       <dep package="pango" />
@@ -61,7 +69,7 @@
   </autotools>
 
   <autotools autogen-sh="configure" autogenargs="--without-x --with-included-modules=yes" id="pango" makeargs="-k -C modules; make">
-    <branch hash="sha256:1aea30df34a8ae4fcce71afd22aa5b57224b52916d46e3ea81ff9f1eb130e64c" module="pango/1.34/pango-1.34.1.tar.xz" version="1.34.1" />
+	<branch hash="sha256:c21f7277b5c088f334748b38f2c3abd6399024d653ab7663f567234acbdc7f92" module="pango/1.35/pango-1.35.0.tar.xz" version="1.35.0" />
     <dependencies>
       <dep package="cairo" />
       <dep package="fontconfig" />
@@ -103,8 +111,8 @@
     </dependencies>
   </autotools>
 
-  <autotools autogen-sh="configure" autogenargs="--disable-silent-rules" id="cairo">
-    <branch hash="sha1:9106ab09b2e7b9f90521b18dd4a7e9577eba6c15" module="cairo-1.12.14.tar.xz" repo="cairographics.org" version="1.12.14" />
+  <autotools autogenargs="--disable-silent-rules" id="cairo">
+    <branch repo="cairo-git" revision="device-scale" />
     <dependencies>
       <dep package="fontconfig" />
       <dep package="pixman" />
@@ -123,13 +131,13 @@
     <branch hash="sha256:b512bf1785fbbb6a264be5fac325c42d4e96cc560b22e3f19ea5b01b1414106d" module="libgee/0.6/libgee-0.6.7.tar.xz" version="0.6.7">
     </branch>
     <dependencies>
-		<dep package="vala" />
+        <dep package="vala" />
     </dependencies>
   </autotools>
 
   <autotools autogenargs="--disable-gtk2-engine" id="gnome-themes-standard">
-    <branch hash="sha256:5cc1b27a70ca6176343212159236332799b074885867e380ed9b3817e15dd1d1" module="gnome-themes-standard/3.8/gnome-themes-standard-3.8.1.tar.xz" version="3.8.1">
-	</branch>
+    <branch repo="git.gnome.org" module="gnome-themes-standard" revision="wip/hidpi">
+    </branch>
     <dependencies>
       <dep package="librsvg" />
       <dep package="intltool" />
@@ -189,7 +197,7 @@
   </waf>
 
   <autotools autogen-sh="configure" autogenargs="--disable-modular-tests --enable-dtrace" id="glib">
-    <branch hash="sha256:7304a453d6893448cb9f49fa585456b57275a07cd7a14e847454a6077001e7d2" module="glib/2.37/glib-2.37.1.tar.xz" version="2.37.1">
+    <branch hash="sha256:d8857d98d9b075cace35f40d48dd9675e3f440e4555d7ab67c83707bbc3d67bc" module="glib/2.37/glib-2.37.3.tar.xz" version="2.37.3">
     </branch>
     <dependencies>
       <dep package="libffi" />

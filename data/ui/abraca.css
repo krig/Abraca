@@ -1,9 +1,38 @@
 .fading-button {
 	opacity: 0.0;
-	transition: 200ms ease-in-out;
+	transition: 150ms ease-in-out;
 }
 
 .abraca-toolbar-visible .fading-button {
 	opacity: 1.0;
-	transition: 200ms ease-in-out;
+	transition: 150ms ease-in-out;
+}
+
+.abraca-album-view {
+}
+
+.abraca-track-list {
+	border: 1px solid rgb(220,220,220);
+	background-color: white;
+	padding: 10px;
+	box-shadow: inset -1px 0 black;
+}
+
+.abraca-album-name {
+	/* text-shadow: 1px 1px 1px rgba(150, 150, 150, 1); */
+	font-size: 16px;
+}
+
+.abraca-album-date {
+	/* text-shadow: 1px 1px 1px rgba(150, 150, 150, 1); */
+	font-size: 12px;
+}
+
+.abraca-coverart {
+	border: 1px solid rgba(80, 80, 80, 1);
+	box-shadow: inset -1px 0 black;
+}
+
+GtkWidget {
+	border: 1px solid red;
 }

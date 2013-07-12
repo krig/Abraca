@@ -203,10 +203,14 @@ namespace Abraca {
 			var filter = new FilterWidget (client, _config, medialib, accel_group);
 			var search = filter.get_searchable ();
 
-			var playlist = new PlaylistWidget (client, _config, medialib, search);
+			//var playlist = new PlaylistWidget (client, _config, medialib, search);
 
-			_right_hpaned.pack1(filter, true, true);
-			_right_hpaned.pack2(playlist, false, true);
+			var ag = new ArtistGrid(client);
+			var s = new Gtk.ScrolledWindow(null, null);
+			s.add(ag);
+
+			_right_hpaned.pack1(s, true, true);
+			//_right_hpaned.pack2(playlist, false, true);
 
 			var collections = new CollectionsView (client, search);
 			scrolled.add (collections);
@@ -221,6 +225,10 @@ namespace Abraca {
 			client.connection_state_changed.connect((c, state) => {
 				_main_hpaned.sensitive = (state == Client.ConnectionState.Connected);
 				_toolbar.sensitive = (state == Client.ConnectionState.Connected);
+
+				if (state == Client.ConnectionState.Connected) {
+					ag.show_artist("Nine Inch Nails");
+				}
 			});
 
 			vbox.pack_start(_main_hpaned, true, true, 0);
